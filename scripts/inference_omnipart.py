@@ -50,7 +50,20 @@ def main() -> None:
     bbox_gen_model.eval().half()
     print("[INFO] BboxGen model loaded")
 
-    infer(args.image_input, args.mask_input, args, part_synthesis_pipeline, bbox_gen_model)
+    if args.image_input.endswith('.txt'):
+        with open(args.image_input) as f:
+            image_inputs = f.read().splitlines()
+    else:
+        image_inputs = [args.image_input]
+
+    if args.mask_input.endswith('.txt'):
+        with open(args.mask_input) as f:
+            mask_inputs = f.read().splitlines()
+    else:
+        mask_inputs = [args.mask_input]
+
+    for image_input, mask_input in zip(image_inputs, mask_inputs, strict=True):
+        infer(image_input, mask_input, args, part_synthesis_pipeline, bbox_gen_model)
 
 
 def infer(
