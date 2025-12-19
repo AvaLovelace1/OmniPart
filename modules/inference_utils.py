@@ -1,6 +1,7 @@
 import os
 os.environ['OPENCV_IO_ENABLE_OPENEXR'] = '1'
 import numpy as np
+from pathlib import Path
 from typing import Optional
 from PIL import Image, ImageDraw
 import torchvision.transforms.functional as TF
@@ -363,7 +364,7 @@ def merge_parts(save_dir):
     scene_list = []
     scene_list_texture = []
     part_list = glob.glob(os.path.join(save_dir, "*.glb"))
-    part_list = [p for p in part_list if "part" in p and "parts" not in p and "part0" not in p] # part 0 is the overall model
+    part_list = [p for p in part_list if "part" in Path(p).name and "parts" not in Path(p).name and "part0" not in Path(p).name] # part 0 is the overall model
     part_list.sort()
     for i, part_path in enumerate(tqdm(part_list, desc="Merging parts")):
         part_mesh = trimesh.load(part_path, force='mesh')
