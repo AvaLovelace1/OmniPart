@@ -12,7 +12,7 @@ from modules.part_synthesis.pipelines import OmniPartImageTo3DPipeline
 
 from huggingface_hub import hf_hub_download
 
-if __name__ == "__main__":
+def main() -> None:
     device = "cuda"
 
     parser = argparse.ArgumentParser()
@@ -34,9 +34,6 @@ if __name__ == "__main__":
         args.bbox_gen_ckpt = hf_hub_download(repo_id="omnipart/OmniPart_modules", filename="bbox_gen.ckpt", local_dir="ckpt")
 
     os.makedirs(args.output_root, exist_ok=True)
-    output_dir = os.path.join(args.output_root, args.image_input.split("/")[-1].split(".")[0])
-    os.makedirs(output_dir, exist_ok=True)
-
     torch.manual_seed(args.seed)
 
     # load part_synthesis model
@@ -52,8 +49,19 @@ if __name__ == "__main__":
     bbox_gen_model.to(device)
     bbox_gen_model.eval().half()
     print("[INFO] BboxGen model loaded")
-    
-    img_white_bg, img_black_bg, ordered_mask_input, img_mask_vis = load_img_mask(args.image_input, args.mask_input)
+
+    infer(args.image_input, args.mask_input, args, part_synthesis_pipeline, bbox_gen_model)
+
+
+def infer(
+        image_input: str, mask_input: str, args,
+        part_synthesis_pipeline: OmniPartImageTo3DPipeline,
+        bbox_gen_model: BboxGen,
+    ) -> None:
+    output_dir = os.path.join(args.output_root, image_input.split("/")[-1].split(".")[0])
+    os.makedirs(output_dir, exist_ok=True)
+
+    img_white_bg, img_black_bg, ordered_mask_input, img_mask_vis = load_img_mask(image_input, mask_input)
     img_mask_vis.save(os.path.join(output_dir, "img_mask_vis.png"))
 
     voxel_coords = part_synthesis_pipeline.get_coords(img_black_bg, num_samples=1, seed=args.seed, sparse_structure_sampler_params={"steps": 25, "cfg_strength": 7.5})
@@ -91,3 +99,7 @@ if __name__ == "__main__":
     )
     merge_parts(output_dir)
     print("[INFO] PartSynthesis output saved")
+
+
+if __name__ == "__main__":
+    main()
