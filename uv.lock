@@ -419,20 +419,6 @@ wheels = [
 ]
 
 [[package]]
-name = "ccimport"
-version = "0.4.4"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "ninja" },
-    { name = "pybind11" },
-    { name = "requests" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/95/08/69b69ae7f5410ca78cd14ca66d0acd1dc280aae9c5f4334a083219a5077f/ccimport-0.4.4.tar.gz", hash = "sha256:278c8416bf9fd8c445d0f8b17080e4e16f7abc7b0a68d4861857c3c4da755ce1", size = 27220, upload-time = "2024-10-15T15:06:10.338Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a3/fa/c069b7befe2f02825186ea1cd1dceb9c5356a80928271aa539b909daeaf4/ccimport-0.4.4-py3-none-any.whl", hash = "sha256:7c78f1258d372de787b7ebe351fb56890f2141b8643c3a45b1842b23828d5245", size = 27287, upload-time = "2024-10-15T15:06:08.932Z" },
-]
-
-[[package]]
 name = "certifi"
 version = "2025.11.12"
 source = { registry = "https://pypi.org/simple" }
@@ -738,23 +724,6 @@ wheels = [
 ]
 
 [[package]]
-name = "cumm-cu120"
-version = "0.4.11"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "fire" },
-    { name = "numpy" },
-    { name = "pccm" },
-    { name = "pybind11" },
-]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d8/39/0c7b8b35820f3103459ad4b1a4fcf6f18dabce3a6f5c687767d295d20b02/cumm_cu120-0.4.11-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:abc25633169beeba68e1d901b316f278d56e3986996f85d4bd6bb20cc102e988", size = 26213941, upload-time = "2023-08-09T03:42:56.314Z" },
-    { url = "https://files.pythonhosted.org/packages/bc/17/b63c754dc5dc5795c1c83da79909700c823c9a0305ac229eed9593a77183/cumm_cu120-0.4.11-cp310-cp310-win_amd64.whl", hash = "sha256:ac0691bebdfcb1214b2466fec8ee7b4e6e3d1cd389e2241550d3b4a2b39e684c", size = 1156248, upload-time = "2023-08-09T03:16:06.756Z" },
-    { url = "https://files.pythonhosted.org/packages/b8/d6/60c89adcd2f85ffae16e7105b67fbe3b78b3199747951b9fb6e7ab2792e2/cumm_cu120-0.4.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8bb81d0211975cc2bbeaedc0176884b2289bd8839568c5390f96fe3fe1a4bdf8", size = 26217950, upload-time = "2023-08-09T03:42:59.416Z" },
-    { url = "https://files.pythonhosted.org/packages/eb/e7/4a1648ce4914099cf266b12a1dd4fa11d6d90a9cac6d8be270a89dc5e2bd/cumm_cu120-0.4.11-cp311-cp311-win_amd64.whl", hash = "sha256:102de4ed3544c165f59aba2b29f8a4a213f21a9f31baa46556fd1f669378ea2c", size = 1157527, upload-time = "2023-08-09T03:17:15.411Z" },
-]
-
-[[package]]
 name = "cycler"
 version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
@@ -865,18 +834,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/58/46/0028a82567109b5ef6e4d2a1f04a583fb513e6cf9527fcdd09afd817deeb/filelock-3.20.0.tar.gz", hash = "sha256:711e943b4ec6be42e1d4e6690b48dc175c822967466bb31c0c293f34334c13f4", size = 18922, upload-time = "2025-10-08T18:03:50.056Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/91/7216b27286936c16f5b4d0c530087e4a54eead683e6b0b73dd0c64844af6/filelock-3.20.0-py3-none-any.whl", hash = "sha256:339b4732ffda5cd79b13f4e2711a31b0365ce445d95d243bb996273d072546a2", size = 16054, upload-time = "2025-10-08T18:03:48.35Z" },
-]
-
-[[package]]
-name = "fire"
-version = "0.7.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "termcolor" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c0/00/f8d10588d2019d6d6452653def1ee807353b21983db48550318424b5ff18/fire-0.7.1.tar.gz", hash = "sha256:3b208f05c736de98fb343310d090dcc4d8c78b2a89ea4f32b837c586270a9cbf", size = 88720, upload-time = "2025-08-16T20:20:24.175Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/4c/93d0f85318da65923e4b91c1c2ff03d8a458cbefebe3bc612a6693c7906d/fire-0.7.1-py3-none-any.whl", hash = "sha256:e43fd8a5033a9001e7e2973bab96070694b9f12f2e0ecf96d4683971b5ab1882", size = 115945, upload-time = "2025-08-16T20:20:22.87Z" },
 ]
 
 [[package]]
@@ -1748,15 +1705,6 @@ wheels = [
 ]
 
 [[package]]
-name = "lark"
-version = "1.3.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/da/34/28fff3ab31ccff1fd4f6c7c7b0ceb2b6968d8ea4950663eadcb5720591a0/lark-1.3.1.tar.gz", hash = "sha256:b426a7a6d6d53189d318f2b6236ab5d6429eaf09259f1ca33eb716eed10d2905", size = 382732, upload-time = "2025-10-27T18:25:56.653Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/82/3d/14ce75ef66813643812f3093ab17e46d3a206942ce7376d31ec2d36229e7/lark-1.3.1-py3-none-any.whl", hash = "sha256:c629b661023a014c37da873b4ff58a817398d12635d3bbb2c5a03be7fe5d1e12", size = 113151, upload-time = "2025-10-27T18:25:54.882Z" },
-]
-
-[[package]]
 name = "lazy-loader"
 version = "0.4"
 source = { registry = "https://pypi.org/simple" }
@@ -2514,6 +2462,7 @@ dependencies = [
     { name = "lightning" },
     { name = "loguru" },
     { name = "mesh2sdf" },
+    { name = "ninja" },
     { name = "nvdiffrast" },
     { name = "omegaconf" },
     { name = "onnxruntime" },
@@ -2529,7 +2478,6 @@ dependencies = [
     { name = "scipy" },
     { name = "segment-anything" },
     { name = "spaces" },
-    { name = "spconv-cu120" },
     { name = "tetgen" },
     { name = "timm" },
     { name = "torch" },
@@ -2559,6 +2507,7 @@ requires-dist = [
     { name = "lightning", specifier = "==2.2" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "mesh2sdf", specifier = ">=1.1.0" },
+    { name = "ninja", specifier = ">=1.13.0" },
     { name = "nvdiffrast", git = "https://github.com/NVlabs/nvdiffrast.git" },
     { name = "omegaconf", specifier = ">=2.3.0" },
     { name = "onnxruntime", specifier = "==1.20.1" },
@@ -2574,7 +2523,6 @@ requires-dist = [
     { name = "scipy", specifier = "==1.14.1" },
     { name = "segment-anything", git = "https://github.com/facebookresearch/segment-anything.git" },
     { name = "spaces", specifier = ">=0.44.0" },
-    { name = "spconv-cu120", specifier = "==2.3.6" },
     { name = "tetgen", specifier = "==0.6.3" },
     { name = "timm", specifier = ">=1.0.22" },
     { name = "torch", specifier = "==2.4.0" },
@@ -2816,22 +2764,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ca/bc/f35b8446f4531a7cb215605d100cd88b7ac6f44ab3fc94870c120ab3adbf/pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712", size = 51043, upload-time = "2023-12-10T22:30:45Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08", size = 31191, upload-time = "2023-12-10T22:30:43.14Z" },
-]
-
-[[package]]
-name = "pccm"
-version = "0.4.16"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "ccimport" },
-    { name = "fire" },
-    { name = "lark" },
-    { name = "portalocker" },
-    { name = "pybind11" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/a7/6f/bdd551b14c333207300bf8cf6b327e68fcfc8650d46af187a73967042f70/pccm-0.4.16.tar.gz", hash = "sha256:a9987c2fc6b663eb5ec1c75430617bb7f3ab3d0724da049918689d5d7c5c8190", size = 67186, upload-time = "2024-09-06T03:34:11.09Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/8a/53/39e6cd6b19e1be302c22bc6db8683968fd52f1df5ed6e38921a16d013406/pccm-0.4.16-py3-none-any.whl", hash = "sha256:97e97c341c50c40965bb8f9a8a1ad201868d64e8baa06f9581bedeb3bc223eec", size = 73731, upload-time = "2024-09-06T03:34:09.646Z" },
 ]
 
 [[package]]
@@ -3974,25 +3906,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/82/77/88dee4566657232b1e08be17858ad3eec3df173b9ab16a47f1b3517dcaea/spaces-0.44.0.tar.gz", hash = "sha256:22603e5eb45c8aa51ef7431530a0721052c80a2331249f84b781a7f1dbb1343b", size = 85607, upload-time = "2025-12-02T16:56:57.051Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/05/55/877b9914cb62d74bad6a007f76271bd483094e91cb52e2350f1950d1f76d/spaces-0.44.0-py3-none-any.whl", hash = "sha256:7992b57883fff65f2ead2daa52b70b51a786631e5c83cd4586198b9e75cc97b1", size = 105649, upload-time = "2025-12-02T16:56:55.574Z" },
-]
-
-[[package]]
-name = "spconv-cu120"
-version = "2.3.6"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "ccimport" },
-    { name = "cumm-cu120" },
-    { name = "fire" },
-    { name = "numpy" },
-    { name = "pccm" },
-    { name = "pybind11" },
-]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/72/786b8cc48f7cd7ce566c93e430ca292a7026ba9a6d148656ae93a0d04f76/spconv_cu120-2.3.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:77cf697d8213bb6c0eb8c9ad7d3ef585a5e1cbc9d3670967be7a157f5a03988a", size = 76336437, upload-time = "2023-04-19T17:07:20.732Z" },
-    { url = "https://files.pythonhosted.org/packages/15/b4/42184815a63f6aa61702ac0963dcda4db184337a06557c3a1b4ba848a34d/spconv_cu120-2.3.6-cp310-cp310-win_amd64.whl", hash = "sha256:434723b24afb534dff31bd3af744ffd60dee8f2d9745e37249831a27510b89c5", size = 74602717, upload-time = "2023-04-19T20:10:31.35Z" },
-    { url = "https://files.pythonhosted.org/packages/42/2a/d3322bdcf3bcd2b31386106ce90dece2aa6e4ddf665c075240e6958e4bd9/spconv_cu120-2.3.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f9e116962e9777558a96101a5d9252db5d46845ad5e5b32f473594984dfee983", size = 76338536, upload-time = "2023-04-19T17:02:50.77Z" },
-    { url = "https://files.pythonhosted.org/packages/40/95/230a20847213930a0300f87c795116f4e44a12c9b98a82a81e50a9bdd871/spconv_cu120-2.3.6-cp311-cp311-win_amd64.whl", hash = "sha256:645e27a722d2d215916abac7c99a86c65006501e820c4183f0122940ec0ab4e5", size = 74601166, upload-time = "2023-04-19T20:23:58.856Z" },
 ]
 
 [[package]]

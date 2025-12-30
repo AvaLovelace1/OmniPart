@@ -33,6 +33,8 @@ conda activate omnipart
 Install dependencies:
 ```bash
 pip install -r requirements.txt
+pip install -e cumm-int32
+pip install -e spconv-int32
 ```
 
 ## 💡 Usage

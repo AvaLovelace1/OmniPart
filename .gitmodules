@@ -1,0 +1,6 @@
+[submodule "cumm-int32"]
+	path = cumm-int32
+	url = https://github.com/chensjtu/cumm-int32.git
+[submodule "spconv-int32"]
+	path = spconv-int32
+	url = https://github.com/chensjtu/spconv-int32
