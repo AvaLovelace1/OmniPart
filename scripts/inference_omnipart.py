@@ -62,7 +62,10 @@ def main() -> None:
     else:
         mask_inputs = [args.mask_input]
 
-    for image_input, mask_input in zip(image_inputs, mask_inputs, strict=True):
+    if len(image_inputs) != len(mask_inputs):
+        raise ValueError("The number of image inputs and mask inputs must be the same.")
+
+    for image_input, mask_input in zip(image_inputs, mask_inputs):
         infer(image_input, mask_input, args, part_synthesis_pipeline, bbox_gen_model)
 
 
