@@ -18,6 +18,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--image_input", type=str, required=True)
     parser.add_argument("--mask_input", type=str, required=True)
+    parser.add_argument("--bbox_input", type=str)
     parser.add_argument("--output_root", type=str, default="./output")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--num_inference_steps", type=int, default=25)
@@ -65,12 +66,23 @@ def main() -> None:
     if len(image_inputs) != len(mask_inputs):
         raise ValueError("The number of image inputs and mask inputs must be the same.")
 
-    for image_input, mask_input in zip(image_inputs, mask_inputs):
-        infer(image_input, mask_input, args, part_synthesis_pipeline, bbox_gen_model)
+    if args.bbox_input:
+        if args.bbox_input.endswith('.txt'):
+            with open(args.bbox_input) as f:
+                bbox_inputs = f.read().splitlines()
+        else:
+            bbox_inputs = [args.bbox_input]
+        if len(image_inputs) != len(bbox_inputs):
+            raise ValueError("The number of image inputs and bbox inputs must be the same.")
+    else:
+        bbox_inputs = [None] * len(image_inputs)
+
+    for image_input, mask_input, bbox_input in zip(image_inputs, mask_inputs, bbox_inputs):
+        infer(image_input, mask_input, bbox_input, args, part_synthesis_pipeline, bbox_gen_model)
 
 
 def infer(
-        image_input: str, mask_input: str, args,
+        image_input: str, mask_input: str, bbox_input: str | None, args,
         part_synthesis_pipeline: OmniPartImageTo3DPipeline,
         bbox_gen_model: BboxGen,
     ) -> None:
@@ -87,10 +99,22 @@ def infer(
     voxel_coords_ply.export(os.path.join(output_dir, "voxel_coords_vis.ply"))
     print("[INFO] Voxel coordinates saved")
 
-    bbox_gen_input = prepare_bbox_gen_input(os.path.join(output_dir, "voxel_coords.npy"), img_white_bg, ordered_mask_input)
-    bbox_gen_output = bbox_gen_model.generate(bbox_gen_input)
-    np.save(os.path.join(output_dir, "bboxes.npy"), bbox_gen_output['bboxes'][0])
-    bboxes_vis = gen_mesh_from_bounds(bbox_gen_output['bboxes'][0])
+    if bbox_input is None:
+        bbox_gen_input = prepare_bbox_gen_input(os.path.join(output_dir, "voxel_coords.npy"), img_white_bg, ordered_mask_input)
+        bbox_gen_output = bbox_gen_model.generate(bbox_gen_input)
+        bboxes = bbox_gen_output['bboxes'][0]
+    else:
+        bboxes = np.load(bbox_input)
+        bboxes = bboxes[..., [0, 2, 1]]  # Swap y and z coordinates
+        # Normalize bboxes to [-0.5, 0.5]
+        bbox_min = bboxes[:,0,:].min(axis=0)
+        bbox_max = bboxes[:,1,:].max(axis=0)
+        scale = np.max(bbox_max - bbox_min)
+        center = (bbox_min + bbox_max) / 2
+        bboxes = (bboxes - center) / scale
+    
+    np.save(os.path.join(output_dir, "bboxes.npy"), bboxes)
+    bboxes_vis = gen_mesh_from_bounds(bboxes)
     bboxes_vis.export(os.path.join(output_dir, "bboxes_vis.glb"))
     print("[INFO] BboxGen output saved")
 
