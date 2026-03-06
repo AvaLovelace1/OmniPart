@@ -19,6 +19,7 @@ def main() -> None:
     parser.add_argument("--image_input", type=str, required=True)
     parser.add_argument("--mask_input", type=str, required=True)
     parser.add_argument("--bbox_input", type=str)
+    parser.add_argument("--voxel_input", type=str)
     parser.add_argument("--output_root", type=str, default="./output")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--num_inference_steps", type=int, default=25)
@@ -77,12 +78,23 @@ def main() -> None:
     else:
         bbox_inputs = [None] * len(image_inputs)
 
-    for image_input, mask_input, bbox_input in zip(image_inputs, mask_inputs, bbox_inputs):
-        infer(image_input, mask_input, bbox_input, args, part_synthesis_pipeline, bbox_gen_model)
+    if args.voxel_input:
+        if args.voxel_input.endswith('.txt'):
+            with open(args.voxel_input) as f:
+                voxel_inputs = f.read().splitlines()
+        else:
+            voxel_inputs = [args.voxel_input]
+        if len(image_inputs) != len(voxel_inputs):
+            raise ValueError("The number of image inputs and voxel inputs must be the same.")
+    else:
+        voxel_inputs = [None] * len(image_inputs)
+
+    for image_input, mask_input, bbox_input, voxel_input in zip(image_inputs, mask_inputs, bbox_inputs, voxel_inputs):
+        infer(image_input, mask_input, bbox_input, voxel_input, args, part_synthesis_pipeline, bbox_gen_model)
 
 
 def infer(
-        image_input: str, mask_input: str, bbox_input: str | None, args,
+        image_input: str, mask_input: str, bbox_input: str | None, voxel_input: str | None, args,
         part_synthesis_pipeline: OmniPartImageTo3DPipeline,
         bbox_gen_model: BboxGen,
     ) -> None:
@@ -92,8 +104,12 @@ def infer(
     img_white_bg, img_black_bg, ordered_mask_input, img_mask_vis = load_img_mask(image_input, mask_input)
     img_mask_vis.save(os.path.join(output_dir, "img_mask_vis.png"))
 
-    voxel_coords = part_synthesis_pipeline.get_coords(img_black_bg, num_samples=1, seed=args.seed, sparse_structure_sampler_params={"steps": 25, "cfg_strength": 7.5})
-    voxel_coords = voxel_coords.cpu().numpy()
+    if voxel_input is None:
+        voxel_coords = part_synthesis_pipeline.get_coords(img_black_bg, num_samples=1, seed=args.seed, sparse_structure_sampler_params={"steps": 25, "cfg_strength": 7.5})
+        voxel_coords = voxel_coords.cpu().numpy()
+    else:
+        voxel_coords = np.load(voxel_input)
+
     np.save(os.path.join(output_dir, "voxel_coords.npy"), voxel_coords)
     voxel_coords_ply = vis_voxel_coords(voxel_coords)
     voxel_coords_ply.export(os.path.join(output_dir, "voxel_coords_vis.ply"))
