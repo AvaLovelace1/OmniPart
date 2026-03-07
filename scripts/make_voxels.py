@@ -35,7 +35,9 @@ def make_voxels(input_path: str, output_path: str):
         mesh, voxel_size=1 / 64, min_bound=(-0.5, -0.5, -0.5), max_bound=(0.5, 0.5, 0.5)
     )
     vertices = np.array([voxel.grid_index for voxel in voxel_grid.get_voxels()])
-    vertices[:, [1, 2]] = vertices[:, [2, 1]]  # swap y and z axes
+    # flip and swap y and z axes to match the voxelization in OmniPart
+    vertices[:, 2] = 63 - vertices[:, 2]
+    vertices[:, [1, 2]] = vertices[:, [2, 1]]
     vertices = np.pad(vertices, ((0, 0), (1, 0)))
     assert np.all(vertices >= 0) and np.all(
         vertices < 64

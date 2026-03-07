@@ -121,13 +121,6 @@ def infer(
         bboxes = bbox_gen_output['bboxes'][0]
     else:
         bboxes = np.load(bbox_input)
-        bboxes = bboxes[..., [0, 2, 1]]  # Swap y and z coordinates
-        # Normalize bboxes to [-0.5, 0.5]
-        bbox_min = bboxes[:,0,:].min(axis=0)
-        bbox_max = bboxes[:,1,:].max(axis=0)
-        scale = np.max(bbox_max - bbox_min)
-        center = (bbox_min + bbox_max) / 2
-        bboxes = (bboxes - center) / scale
     
     np.save(os.path.join(output_dir, "bboxes.npy"), bboxes)
     bboxes_vis = gen_mesh_from_bounds(bboxes)
